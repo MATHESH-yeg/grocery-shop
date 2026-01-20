@@ -17,19 +17,38 @@ const RegisterPage = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
+  const [countryCode, setCountryCode] = useState('+91');
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError('');
 
+    // Email Validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(form.email)) {
+      setError('Please enter a valid email address');
+      setLoading(false);
+      return;
+    }
+
+    // Role Validation
     if (role === 'admin' && !form.email.endsWith('@admin.com')) {
       setError('Admin accounts must use an @admin.com email address');
       setLoading(false);
       return;
     }
 
+    // Mobile Validation
+    if (!/^\d{10}$/.test(form.mobile)) {
+      setError('Mobile number must be exactly 10 digits');
+      setLoading(false);
+      return;
+    }
+
     try {
-      const user = await register({ ...form, role });
+      const fullMobile = `${countryCode}${form.mobile}`;
+      const user = await register({ ...form, mobile: fullMobile, role });
       // Redirect based on role
       if (user.role === 'admin') {
         navigate('/admin');
@@ -133,15 +152,33 @@ const RegisterPage = () => {
 
             <div className="space-y-1">
               <label className="block text-sm font-semibold text-gray-700 ml-1">Mobile Number</label>
-              <div className="relative group">
+              <div className="relative group flex gap-2">
                 <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-primary rounded-xl blur opacity-20 group-hover:opacity-40 transition-opacity"></div>
+
+                <select
+                  value={countryCode}
+                  onChange={(e) => setCountryCode(e.target.value)}
+                  className="relative w-24 bg-white/80 border border-gray-200 rounded-xl px-2 py-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all shadow-sm appearance-none cursor-pointer"
+                >
+                  <option value="+91">🇮🇳 +91</option>
+                  <option value="+1">🇺🇸 +1</option>
+                  <option value="+44">🇬🇧 +44</option>
+                  <option value="+61">🇦🇺 +61</option>
+                  <option value="+81">🇯🇵 +81</option>
+                  <option value="+86">🇨🇳 +86</option>
+                </select>
+
                 <input
                   type="tel"
                   required
+                  maxLength={10}
                   value={form.mobile}
-                  onChange={(e) => setForm({ ...form, mobile: e.target.value })}
-                  className="relative w-full bg-white/80 border border-gray-200 rounded-xl px-4 py-3 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all shadow-sm"
-                  placeholder="+91 98765 43210"
+                  onChange={(e) => {
+                    const val = e.target.value.replace(/\D/g, ''); // Only allow digits
+                    if (val.length <= 10) setForm({ ...form, mobile: val });
+                  }}
+                  className="relative flex-1 bg-white/80 border border-gray-200 rounded-xl px-4 py-3 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all shadow-sm"
+                  placeholder="98765 43210"
                 />
               </div>
             </div>
