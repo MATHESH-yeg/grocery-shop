@@ -69,7 +69,7 @@ const Apple = (props) => (
 
 const Hero3D = () => {
     return (
-        <div className="h-[400px] w-full">
+        <div className="h-full w-full">
             <Canvas camera={{ position: [0, 0, 6], fov: 45 }}>
                 <ambientLight intensity={0.7} />
                 <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={1} />

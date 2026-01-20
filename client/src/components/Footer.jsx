@@ -6,7 +6,7 @@ const Footer = () => {
         <footer className="bg-white pt-10 pb-6 border-t border-gray-100">
             {/* Features Section */}
             <div className="container-responsive mb-12">
-                <div className="grid grid-cols-2 md:grid-cols-5 gap-6 text-center">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
                     <div className="flex flex-col items-center gap-2 group">
                         <div className="w-12 h-12 rounded-full bg-gray-50 flex items-center justify-center text-gray-600 group-hover:bg-purple-50 group-hover:text-purple-600 transition-colors">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -16,18 +16,6 @@ const Footer = () => {
                         <div>
                             <h3 className="font-semibold text-sm text-gray-800">Free Shipping</h3>
                             <p className="text-xs text-gray-500">For all Orders Over $100</p>
-                        </div>
-                    </div>
-
-                    <div className="flex flex-col items-center gap-2 group">
-                        <div className="w-12 h-12 rounded-full bg-gray-50 flex items-center justify-center text-gray-600 group-hover:bg-purple-50 group-hover:text-purple-600 transition-colors">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 className="font-semibold text-sm text-gray-800">30 Days Returns</h3>
-                            <p className="text-xs text-gray-500">For an Exchange Product</p>
                         </div>
                     </div>
 
@@ -76,7 +64,7 @@ const Footer = () => {
                     <h3 className="text-lg font-semibold text-gray-800">Contact Us</h3>
                     <div className="text-sm text-gray-500 space-y-3">
                         <p>FreshFarm - Premium Farm Store<br />507-Union Trade Centre France</p>
-                        <p className="hover:text-primary transition-colors cursor-pointer">someone@example.com</p>
+                        <p className="hover:text-primary transition-colors cursor-pointer">lathastore@gmail.com</p>
                         <p className="text-lg font-bold text-secondary">(+91) 9876543210</p>
                         <div className="flex items-center gap-2 text-gray-600 hover:text-primary cursor-pointer transition-colors">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">

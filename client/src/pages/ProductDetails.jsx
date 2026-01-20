@@ -77,11 +77,11 @@ const ProductDetails = () => {
       <div className="grid md:grid-cols-2 gap-12">
         {/* Left: Images */}
         <div className="space-y-4">
-          <div className="bg-white rounded-2xl p-2 border border-gray-100 shadow-sm overflow-hidden">
+          <div className="bg-white rounded-2xl p-2 border border-gray-100 shadow-sm overflow-hidden flex items-center justify-center">
             <img
               src={product.imageUrl}
               alt={product.name}
-              className="w-full h-[400px] object-contain hover:scale-105 transition-transform duration-500"
+              className="w-full h-[250px] md:h-[400px] object-contain hover:scale-105 transition-transform duration-500"
             />
           </div>
           <div className="grid grid-cols-4 gap-4">
@@ -192,8 +192,8 @@ const ProductDetails = () => {
               key={tab}
               onClick={() => setActiveTab(tab)}
               className={`pb-4 text-lg font-semibold capitalize transition-colors relative ${activeTab === tab
-                  ? 'text-primary'
-                  : 'text-gray-500 hover:text-gray-800'
+                ? 'text-primary'
+                : 'text-gray-500 hover:text-gray-800'
                 }`}
             >
               {tab}

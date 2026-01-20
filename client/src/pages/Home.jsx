@@ -79,7 +79,7 @@ const Home = () => {
           </div>
 
           {/* 3D Area */}
-          <div className="relative h-[400px] w-full">
+          <div className="relative h-[250px] md:h-[400px] w-full">
             <Hero3D />
           </div>
         </div>
