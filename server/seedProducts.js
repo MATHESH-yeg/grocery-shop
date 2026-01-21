@@ -5,7 +5,7 @@ const Product = require('./models/Product');
 const sampleProducts = [
   // Vegetables
   {
-    name: 'Fresh Tomatoes',
+    name: 'Tomatoes',
     description: 'Red, ripe tomatoes perfect for salads and cooking. Locally sourced and organic.',
     price: 45.00,
     category: 'Vegetables',
@@ -36,14 +36,6 @@ const sampleProducts = [
     imageUrl: 'https://images.unsplash.com/photo-1551326844-4df70f78d0e9?w=800&q=80',
     stock: 25,
   },
-  {
-    name: 'Broccoli',
-    description: 'Fresh broccoli florets. High in fiber and vitamin C.',
-    price: 70.00,
-    category: 'Vegetables',
-    imageUrl: 'https://images.unsplash.com/photo-1584270354949-c26b0d5b4a0c?w=800&q=80',
-    stock: 35,
-  },
   // Fruits
   {
     name: 'Red Apples',
@@ -54,45 +46,12 @@ const sampleProducts = [
     stock: 60,
   },
   {
-    name: 'Fresh Bananas',
+    name: 'Bananas',
     description: 'Ripe, yellow bananas. Rich in potassium and energy.',
     price: 50.00,
     category: 'Fruits',
     imageUrl: 'https://images.unsplash.com/photo-1528825876202-99c09650040c?w=800&q=80',
     stock: 80,
-  },
-  {
-    name: 'Sweet Oranges',
-    description: 'Juicy, vitamin C-rich oranges. Fresh and tangy.',
-    price: 90.00,
-    category: 'Fruits',
-    imageUrl: 'https://images.unsplash.com/photo-1582910831295-df58cbd47922?w=800&q=80',
-    stock: 45,
-  },
-  {
-    name: 'Fresh Strawberries',
-    description: 'Sweet, red strawberries. Perfect for desserts and smoothies.',
-    price: 150.00,
-    category: 'Fruits',
-    imageUrl: 'https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=800&q=80',
-    stock: 20,
-  },
-  {
-    name: 'Green Grapes',
-    description: 'Sweet and seedless green grapes. Great for snacking.',
-    price: 180.00,
-    category: 'Fruits',
-    imageUrl: 'https://images.unsplash.com/photo-1599599810769-bcde5a160d32?w=800&q=80',
-    stock: 30,
-  },
-  // Beverages
-  {
-    name: 'Fresh Orange Juice',
-    description: '100% pure orange juice. No added sugar or preservatives.',
-    price: 80.00,
-    category: 'Beverages',
-    imageUrl: 'https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=800&q=80',
-    stock: 40,
   },
   {
     name: 'Apple Juice',
@@ -101,14 +60,6 @@ const sampleProducts = [
     category: 'Beverages',
     imageUrl: 'https://images.unsplash.com/photo-1606168091149-c8c4c330c64b?w=800&q=80',
     stock: 35,
-  },
-  {
-    name: 'Coconut Water',
-    description: 'Natural coconut water. Hydrating and refreshing.',
-    price: 60.00,
-    category: 'Beverages',
-    imageUrl: 'https://images.unsplash.com/photo-1543362906-acfc16c670a4?w=800&q=80',
-    stock: 50,
   },
   {
     name: 'Fresh Lemonade',
@@ -126,14 +77,6 @@ const sampleProducts = [
     category: 'Snacks',
     imageUrl: 'https://images.unsplash.com/photo-1511067007398-7e4b90cfa4bc?w=800&q=80',
     stock: 25,
-  },
-  {
-    name: 'Organic Trail Mix',
-    description: 'Healthy trail mix with dried fruits and nuts.',
-    price: 180.00,
-    category: 'Snacks',
-    imageUrl: 'https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=800&q=80',
-    stock: 30,
   },
   {
     name: 'Granola Bars',
@@ -169,7 +112,7 @@ const sampleProducts = [
     stock: 30,
   },
   {
-    name: 'Fresh Cheese',
+    name: ' Cheese',
     description: 'Mozzarella cheese. Perfect for pizzas and salads.',
     price: 150.00,
     category: 'Dairy',
@@ -185,7 +128,7 @@ const sampleProducts = [
     stock: 40,
   },
   {
-    name: 'Fresh Eggs',
+    name: ' Eggs',
     description: 'Farm-fresh eggs. Pack of 12 eggs.',
     price: 90.00,
     category: 'Dairy',
