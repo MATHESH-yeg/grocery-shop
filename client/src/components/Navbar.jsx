@@ -14,49 +14,53 @@ const Navbar = () => {
   const cartCount = items.reduce((sum, i) => sum + i.quantity, 0);
 
   return (
-    <nav className="bg-white/90 backdrop-blur-sm border-b border-purple-100 sticky top-0 z-20">
-      <div className="container-responsive py-4 flex flex-col gap-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4 lg:gap-8">
+    <nav className="bg-white/95 backdrop-blur-md border-b border-gray-100 sticky top-0 z-50">
+      <div className="container-responsive py-3 lg:py-4">
+        <div className="flex items-center justify-between gap-2">
+          {/* Left Side: Menu + Logo */}
+          <div className="flex items-center gap-2 sm:gap-4 flex-shrink-0">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden p-1 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+              className="md:hidden p-1.5 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors flex items-center justify-center"
             >
-              <span className="material-icons">
+              <span className="material-icons text-[24px]">
                 {isMenuOpen ? 'close' : 'menu'}
               </span>
             </button>
 
-            <Link to="/" className="text-xl md:text-2xl font-bold text-primary flex items-center gap-2">
-              <span className="text-2xl md:text-3xl">🍇</span>
-              <span>Fresh<span className="text-secondary">Farm</span></span>
+            <Link to="/" className="flex items-center gap-1.5 sm:gap-2">
+              <span className="text-2xl sm:text-3xl">🍇</span>
+              <span className="text-lg sm:text-2xl font-bold tracking-tight text-gray-800">
+                Fresh<span className="text-primary">Farm</span>
+              </span>
             </Link>
-
-            <div className="hidden md:flex gap-1 lg:gap-3">
-              {categories.map((c) => (
-                <NavLink
-                  key={c}
-                  to={`/category/${encodeURIComponent(c)}`}
-                  className={({ isActive }) =>
-                    `text-xs lg:text-sm px-2 lg:px-3 py-1 rounded-full whitespace-nowrap ${isActive ? 'bg-primary text-white' : 'text-gray-700 hover:bg-gray-100'
-                    }`
-                  }
-                >
-                  {c}
-                </NavLink>
-              ))}
-            </div>
           </div>
 
-          <div className="flex items-center gap-2 md:gap-4">
+          {/* Center: Desktop Nav */}
+          <div className="hidden md:flex items-center gap-1 lg:gap-2">
+            {categories.map((c) => (
+              <NavLink
+                key={c}
+                to={`/category/${encodeURIComponent(c)}`}
+                className={({ isActive }) =>
+                  `text-[13px] lg:text-sm px-3 py-1.5 rounded-full font-medium transition-all whitespace-nowrap ${isActive ? 'bg-primary text-white shadow-md shadow-primary/20' : 'text-gray-600 hover:bg-gray-100'
+                  }`
+                }
+              >
+                {c}
+              </NavLink>
+            ))}
+          </div>
+
+          {/* Right Side: Actions */}
+          <div className="flex items-center gap-1.5 sm:gap-3 flex-shrink-0">
             <button
               onClick={() => navigate('/cart')}
-              className="relative inline-flex items-center px-2 md:px-3 py-1 rounded-full bg-gray-100 hover:bg-gray-200 transition-all"
+              className="relative p-2 rounded-full hover:bg-gray-100 transition-colors flex items-center justify-center group"
             >
-              <span className="material-icons text-gray-700 text-lg md:text-xl">shopping_cart</span>
-              <span className="hidden xs:inline text-xs md:text-sm font-medium ml-1">Cart</span>
+              <span className="material-icons text-gray-600 group-hover:text-primary transition-colors">shopping_cart</span>
               {cartCount > 0 && (
-                <span className="ml-1 md:ml-2 inline-flex items-center justify-center w-4 h-4 md:w-5 md:h-5 rounded-full bg-primary text-white text-[10px] md:text-xs">
+                <span className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] px-1 rounded-full bg-red-500 text-white text-[10px] font-bold flex items-center justify-center shadow-sm">
                   {cartCount}
                 </span>
               )}
@@ -66,39 +70,45 @@ const Navbar = () => {
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => navigate('/orders')}
-                  className="hidden sm:inline-block text-xs md:text-sm px-2 md:px-3 py-1 rounded-full border border-gray-200 text-gray-700 hover:bg-gray-100 transition-all"
+                  className="hidden sm:flex items-center justify-center p-2 rounded-full hover:bg-gray-100 transition-colors"
+                  title="My Orders"
                 >
-                  Orders
+                  <span className="material-icons text-gray-600">receipt_long</span>
                 </button>
-                <span className="hidden lg:inline text-sm text-gray-700 font-medium">
-                  Hi, {user.name?.split(' ')[0] || 'User'}
-                </span>
-                {user.role === 'admin' && (
+                {user.role === 'admin' ? (
                   <button
                     onClick={() => navigate('/admin')}
-                    className="text-xs md:text-sm px-2 md:px-3 py-1 rounded-full border border-primary text-primary hover:bg-primary hover:text-white transition-all"
+                    className="text-xs sm:text-sm px-3 sm:px-4 py-1.5 rounded-full bg-primary text-white font-semibold hover:bg-primaryDark transition-all shadow-md shadow-primary/10"
                   >
-                    My Farm
+                    Dashboard
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => navigate('/profile')}
+                    className="p-2 rounded-full hover:bg-gray-100 transition-colors hidden sm:flex"
+                  >
+                    <span className="material-icons text-gray-600">person</span>
                   </button>
                 )}
                 <button
                   onClick={logout}
-                  className="text-xs md:text-sm px-2 md:px-3 py-1 rounded-full bg-primary text-white hover:bg-primaryDark transition-colors"
+                  className="p-2 rounded-full hover:bg-red-50 text-gray-600 hover:text-red-500 transition-colors"
+                  title="Logout"
                 >
-                  Logout
+                  <span className="material-icons">logout</span>
                 </button>
               </div>
             ) : (
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1 sm:gap-2">
                 <button
                   onClick={() => navigate('/login')}
-                  className="text-xs md:text-sm px-3 md:px-4 py-1 rounded-full border border-primary text-primary hover:bg-primary hover:text-white transition-all font-semibold"
+                  className="text-[12px] sm:text-sm px-3 sm:px-4 py-1.5 rounded-full font-bold text-primary hover:bg-primary/5 transition-all"
                 >
                   Login
                 </button>
                 <button
                   onClick={() => navigate('/register')}
-                  className="hidden sm:inline-block text-xs md:text-sm px-3 md:px-4 py-1 rounded-full bg-primary text-white hover:bg-primaryDark transition-all font-semibold"
+                  className="text-[12px] sm:text-sm px-3 sm:px-4 py-1.5 rounded-full bg-primary text-white font-bold hover:bg-primaryDark transition-all shadow-md shadow-primary/20"
                 >
                   Sign up
                 </button>
@@ -107,29 +117,33 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Categories Menu */}
+        {/* Mobile Menu Dropdown */}
         {isMenuOpen && (
-          <div className="md:hidden flex flex-wrap gap-2 py-2 border-t border-purple-50">
-            {categories.map((c) => (
-              <NavLink
-                key={c}
-                to={`/category/${encodeURIComponent(c)}`}
-                onClick={() => setIsMenuOpen(false)}
-                className={({ isActive }) =>
-                  `text-[10px] sm:text-xs px-2 py-1 rounded-lg ${isActive ? 'bg-primary text-white' : 'bg-gray-50 text-gray-700'
-                  }`
-                }
-              >
-                {c}
-              </NavLink>
-            ))}
-            <Link
-              to="/orders"
-              onClick={() => setIsMenuOpen(false)}
-              className="sm:hidden text-[10px] px-2 py-1 rounded-lg bg-gray-50 text-gray-700"
-            >
-              My Orders
-            </Link>
+          <div className="md:hidden mt-3 pt-3 border-t border-gray-100 animate-in slide-in-from-top duration-300">
+            <div className="grid grid-cols-2 gap-2">
+              {categories.map((c) => (
+                <NavLink
+                  key={c}
+                  to={`/category/${encodeURIComponent(c)}`}
+                  onClick={() => setIsMenuOpen(false)}
+                  className={({ isActive }) =>
+                    `text-sm px-4 py-2.5 rounded-xl font-medium text-center ${isActive ? 'bg-primary text-white' : 'bg-gray-50 text-gray-600'
+                    }`
+                  }
+                >
+                  {c}
+                </NavLink>
+              ))}
+              {user && (
+                <button
+                  onClick={() => { navigate('/orders'); setIsMenuOpen(false); }}
+                  className="col-span-2 text-sm px-4 py-2.5 rounded-xl bg-gray-50 text-gray-600 font-medium text-left flex items-center gap-2"
+                >
+                  <span className="material-icons text-sm">receipt_long</span>
+                  My Orders
+                </button>
+              )}
+            </div>
           </div>
         )}
       </div>
